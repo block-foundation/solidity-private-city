@@ -19,7 +19,28 @@
 pragma solidity ^0.8.19;
 
 
+// ============================================================================
+// Contracts
+// ============================================================================
+
+/**
+ * Private City Contract
+ * @dev 
+ */
 contract PrivateCity {
+
+    // Parameters
+    // ========================================================================
+
+    // Owner of the contract, the city mayor
+    address public mayor;
+
+    // City treasury
+    uint public treasury;
+
+    // Structs
+    // ========================================================================
+
     // Define the struct for a Citizen
     struct Citizen {
         string name;
@@ -36,18 +57,28 @@ contract PrivateCity {
         uint taxRate; // Tax rate as percentage
     }
 
+
+    // Constructor
+    // ========================================================================
+
+    // Set the mayor to the contract deployer
+    constructor() {
+        mayor = msg.sender;
+    }
+
+    // Mappings
+    // ========================================================================
+
     // Map of all citizens in the city
     mapping(address => Citizen) public citizens;
+
     // Map of all properties in the city
     mapping(string => Property) public properties;
 
-    // Owner of the contract, the city mayor
-    address public mayor;
-
-    // City treasury
-    uint public treasury;
 
     // Events
+    // ========================================================================
+
     event CitizenAdded(address citizenAddress, string name);
     event CitizenRemoved(address citizenAddress);
     event PropertyAdded(string propertyID, address ownerAddress);
@@ -57,16 +88,19 @@ contract PrivateCity {
     event Withdrawn(address toAddress, uint amount);
     event TaxesPaid(address fromAddress, uint totalTax);
 
+
+    // Modifiers
+    // ========================================================================
+
     // Modifier to require that the caller is the mayor
     modifier onlyMayor {
         require(msg.sender == mayor, "Only the mayor can perform this action");
         _;
     }
 
-    // Set the mayor to the contract deployer
-    constructor() {
-        mayor = msg.sender;
-    }
+
+    // Methods
+    // ========================================================================
 
     // Function for citizens to deposit Ether into their city account
     function deposit() public payable {
@@ -134,4 +168,5 @@ contract PrivateCity {
 
         emit TaxesPaid(msg.sender, totalTax);
     }
+
 }
