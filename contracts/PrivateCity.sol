@@ -110,7 +110,9 @@ contract PrivateCity {
     }
 
     // Function for citizens to withdraw Ether from their city account
-    function withdraw(uint amount) public {
+    function withdraw(
+        uint amount
+    ) public {
         require(citizens[msg.sender].balance >= amount, "Insufficient balance");
         // Subtract the amount from the citizen's balance
         citizens[msg.sender].balance -= amount;
@@ -119,30 +121,50 @@ contract PrivateCity {
         emit Withdrawn(msg.sender, amount);
     }
 
-    function addCitizen(string memory name, address payable citizenAddress) public onlyMayor {
+    function addCitizen(
+        string memory name,
+        address payable citizenAddress
+    ) public onlyMayor {
         citizens[citizenAddress] = Citizen(name, citizenAddress, 0, 0);
         emit CitizenAdded(citizenAddress, name);
     }
 
-    function removeCitizen(address citizenAddress) public onlyMayor {
+    function removeCitizen(
+        address citizenAddress
+    ) public onlyMayor {
         delete citizens[citizenAddress];
         emit CitizenRemoved(citizenAddress);
     }
 
-    function addProperty(string memory propertyID, string memory propertyDetails, address ownerAddress, uint taxRate) public onlyMayor {
-        properties[propertyID] = Property(propertyID, ownerAddress, propertyDetails, taxRate);
+    function addProperty(
+        string memory propertyID,
+        string memory propertyDetails,
+        address ownerAddress,
+        uint taxRate
+    ) public onlyMayor {
+        properties[propertyID] = Property(
+            propertyID,
+            ownerAddress,
+            propertyDetails,
+            taxRate
+        );
         citizens[ownerAddress].propertyCount += 1;
         emit PropertyAdded(propertyID, ownerAddress);
     }
 
-    function removeProperty(string memory propertyID) public onlyMayor {
+    function removeProperty(
+        string memory propertyID
+    ) public onlyMayor {
         address ownerAddress = properties[propertyID].ownerAddress;
         citizens[ownerAddress].propertyCount -= 1;
         delete properties[propertyID];
         emit PropertyRemoved(propertyID);
     }
 
-    function transferProperty(string memory propertyID, address toAddress) public onlyMayor {
+    function transferProperty(
+        string memory propertyID,
+        address toAddress
+    ) public onlyMayor {
         address fromAddress = properties[propertyID].ownerAddress;
         citizens[fromAddress].propertyCount -= 1;
         properties[propertyID].ownerAddress = toAddress;
@@ -159,10 +181,14 @@ contract PrivateCity {
             }
         }
 
-        require(citizens[msg.sender].balance >= totalTax, "Insufficient balance for tax payment");
+        require(
+            citizens[msg.sender].balance >= totalTax,
+            "Insufficient balance for tax payment"
+        );
         
         // Subtract the tax from the citizen's balance
         citizens[msg.sender].balance -= totalTax;
+
         // Add the tax to the city's treasury
         treasury += totalTax;
 
