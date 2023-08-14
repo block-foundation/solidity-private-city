@@ -37,6 +37,7 @@
 </div>
 
 **Private City: A Blockchain-Based City Governance System**
+This repository contains the smart contract code, test cases, and deployment scripts for a decentralized application representing a private city management system on the Ethereum blockchain.
 
 ## Introduction
 
@@ -52,6 +53,73 @@ The project's smart contract includes a variety of features that mirror real-lif
 - Decentralized Finance: A basic decentralized finance system where citizens can deposit and withdraw Ether, and pay taxes based on their property holdings.
 
 The overarching goal of PrivateCity is to explore how blockchain technology can be utilized to create efficient, transparent, and secure systems for city governance. The project aims to stimulate conversations about the potential of blockchain technology in managing not just digital assets, but also tangible assets in real-world environments.
+
+## Overview
+
+`PrivateCity` is a Solidity-based smart contract system that allows:
+
+1. **Citizenship management:** Add or remove citizens.
+2. **Property management:** Add, remove, or transfer properties.
+3. **Financial system:** Citizens can deposit and withdraw Ether, and pay property taxes.
+
+## Installation
+
+### Prerequisites
+
+Make sure you have `node` and `npm` installed. You also need to have Ethereum wallet software, like [Metamask](https://metamask.io/), set up.
+
+### Steps
+
+1. Clone the repository:
+
+```bash
+git clone [repository_url] privatecity
+cd privatecity
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Compile the contracts:
+
+```bash
+npx hardhat compile
+```
+
+## Usage
+
+### Local Development
+
+Start a local Ethereum development network:
+
+```bash
+npx hardhat node
+```
+
+This will start a local Ethereum network for development purposes.
+
+## Testing
+
+Run the tests with:
+
+```bash
+npx hardhat test
+```
+
+This command will execute the TypeScript test cases using the Hardhat testing environment.
+
+## Deployment
+
+To deploy the contract on your local Ethereum network:
+
+```bash
+npx hardhat run scripts/deploy.ts --network localhost
+```
+
+Replace `localhost` with another network configuration in `hardhat.config.ts` if you want to deploy to a different network.\
 
 ## Quick Start
 
@@ -86,7 +154,6 @@ npm run compile
 | **Rent-to-Own**                   | [**>>>**](https://github.com/block-foundation/solidity-rent-to-own) | [**>>>**](https://github.com/block-foundation/teal-rent-to-own) |
 | **Self-Owning Building**          | [**>>>**](https://github.com/block-foundation/solidity-self-owning-building) | [**>>>**](https://github.com/block-foundation/teal-self-owning-building) |
 | **Smart Home**                    | [**>>>**](https://github.com/block-foundation/solidity-smart-home) | [**>>>**](https://github.com/block-foundation/teal-smart-home) |
-
 
 ---
 
