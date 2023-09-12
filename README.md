@@ -9,7 +9,7 @@
 
 <div>
     <img align="right" src="https://raw.githubusercontent.com/block-foundation/brand/master/src/logo/logo_gray.png" width="96" alt="Block Foundation Logo">
-    <h1 align="left">Private city</h1>
+    <h1 align="left">Private City</h1>
     <h3 align="left">Block Foundation Smart Contract Series [Solidity]</h3>
 </div>
 
